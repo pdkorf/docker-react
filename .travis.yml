@@ -8,3 +8,19 @@ before_install:
 
 script:
   - docker run -e CI=true pkorf/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-678528598536"
+  bucket_path: "docker"
+  on:
+    branch: matser
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
+
+#   access_key_id: $AWS_ACCESS_KEY
+# secret_access_key: $AWS_SECRET_KEY
